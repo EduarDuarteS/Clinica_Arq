@@ -1,0 +1,48 @@
+<mat-card appElevation class="example-card">
+    <div class="example-content">
+    <mat-card-header>
+      <img mat-card-avatar [src]='imgSrc' >
+      <mat-card-title>{{turno.especialidad}}</mat-card-title>
+      <mat-card-subtitle>Consultorio: {{turno.consultorio}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="button-group">
+      <button mat-stroked-button (click)="modificar()">Modificar</button>
+      <button mat-stroked-button (click)="verDetalles()">Detalles</button>
+      <button mat-stroked-button (click)="verMedico()">Médico</button>
+      <button mat-stroked-button (click)="verPaciente()">Paciente</button>
+    </mat-card-actions>
+    <mat-card-actions class="stretched-button" >
+      <button *ngIf="usuario.rol == 1" mat-stroked-button (click)="verEncuesta()">Encuesta</button>
+      <button mat-stroked-button (click)="verHistoria()">Historia Clinica</button>
+    </mat-card-actions>    
+    </div>
+    <mat-card-content class="example-content">
+        
+      <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+        <mat-chip   color="primary">
+          <strong>Profesional</strong> : {{turno.nombreMedico}}
+        </mat-chip>
+        <mat-chip color="primary">
+          <strong>Paciente</strong> : {{turno.nombrePaciente}}
+        </mat-chip>
+        <mat-chip color="primary">
+          <strong>Estado</strong> : {{turno.estado}}
+        </mat-chip>
+        <mat-chip   color="primary">
+          <strong>Fecha</strong> : {{turno.fecha | fecha}} - {{turno.horario}} 
+        </mat-chip>
+        <mat-chip   color="primary">
+          <strong>Dias faltantes</strong> : {{turno.fecha | diasFaltantes}}
+        </mat-chip>
+      </mat-chip-list>
+        <br>
+        <button *ngIf="atributos.length > 0" mat-stroked-button [matMenuTriggerFor]="aboveMenu">Datos adicionales</button>
+      <mat-menu #aboveMenu="matMenu" yPosition="below" xPosition="before" >
+        <mat-label *ngFor="let atributo of atributos" mat-menu-item> 
+          <mat-icon aria-hidden="false" aria-label="label-icon">label</mat-icon>
+            <strong>{{atributo[0]}} : {{atributo[1]}}</strong>
+        </mat-label>
+      </mat-menu>
+
+    </mat-card-content>
+  </mat-card>

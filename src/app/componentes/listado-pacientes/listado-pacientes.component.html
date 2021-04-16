@@ -1,0 +1,25 @@
+<div class="mat-elevation-z8 frame">
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let paciente"> {{paciente.nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="afiliado">
+      <mat-header-cell *matHeaderCellDef> Nro Afiliado </mat-header-cell>
+      <mat-cell *matCellDef="let paciente"> {{paciente.numeroAfiliado}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="obraSocial">
+      <mat-header-cell *matHeaderCellDef> Obra Social </mat-header-cell>
+      <mat-cell *matCellDef="let paciente"> {{paciente.obraSocial}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnasPacientes"></mat-header-row>
+    <mat-row class="example-element-row" *matRowDef="let row; columns: columnasPacientes;">
+    </mat-row>
+  </mat-table>
+  <mat-paginator [length]="100" [pageSize]='pages' showFirstLastButtons>
+  </mat-paginator>
+</div>

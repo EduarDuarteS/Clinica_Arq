@@ -1,0 +1,95 @@
+.img-frame{
+  margin-left: 50px;
+}
+
+
+ mat-accordion {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #F8F8FF;  
+}
+
+mat-expansion-panel{
+  background-color: #F8F8FF;  
+}
+
+.layout
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 300px;
+  padding-bottom: 50px;
+}
+
+.tabla{
+  height: 100px;
+  width: 50px;
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 0;
+}
+
+.historia-field{
+  width: 300px;  
+}
+
+.historia-field .mat-input-element {
+  color: black;
+  /* add input text color here */
+}
+
+
+.historia-field mat-label {
+  color: black;
+  /* add label text color here */
+}
+
+.mat-input-element::placeholder {
+  color: black;
+  
+  /* add placeholder css here */
+}
+
+.datosExtras{
+  max-height: 200px;
+}
+
+.opciones{ 
+  background-color: lightsteelblue;
+}
+
+.example-viewport {
+  height: 200px;
+  width: 400px;
+}
+
+.example-item {
+  height: 35px;
+}
+
+.right-align {
+  text-align: right;
+}
+
+input.right-align {
+  -moz-appearance: textfield;
+}
+
+button{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+mat-list {
+  max-height: 300px;
+}

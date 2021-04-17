@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  firebaseConfig = {
+  firebaseConfig : {
     apiKey: "AIzaSyC7yuT4KV2CrQGibay5uoRfhRUYPixLoMs",
     authDomain: "clinica-abc.firebaseapp.com",
     projectId: "clinica-abc",
@@ -25,7 +25,7 @@ export const environment = {
   //   measurementId: "G-YGGBT9VCC2"
   // },
   agmKey : "6Ldw560aAAAAAE-S22jo4hXJcrUXIbKVEHwSNDYS",
-  
+
   captchaKey : "6Ldw560aAAAAAFOuQDW37e2dhpJdUtDvo6CxwT6Q",
   secretKey : '6Lf4PgEVAAAAAE35jCxVHpaHz1GiTnZgtvD6_m6s'
   // captchaKey : "6Lf4PgEVAAAAAIMCECzTn0my0GUYjL6DlfjXf_K_",

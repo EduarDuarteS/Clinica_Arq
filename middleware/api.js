@@ -101,7 +101,7 @@ app.post("/salida", async (req, res) => {
     }
 
     res.status(500).send({
-      message: "could not invocate rpa",
+      message: "could not invoke rpa",
     });
     return;
   }

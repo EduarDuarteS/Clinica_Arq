@@ -8,12 +8,15 @@ export const environment = {
   firebaseConfig : {
     apiKey: "AIzaSyC7yuT4KV2CrQGibay5uoRfhRUYPixLoMs",
     authDomain: "clinica-abc.firebaseapp.com",
+    // databaseURL: "https://clinica-abc.firebaseio.com",
+    databaseURL: "https://clinica-abc-default-rtdb.firebaseio.com/",
     projectId: "clinica-abc",
     storageBucket: "clinica-abc.appspot.com",
     messagingSenderId: "285271616103",
     appId: "1:285271616103:web:b582519351a19e2a6cc2c2",
     measurementId: "G-5HR425GMQ6"
   },
+  // firebaseConfig databaseURL
   // firebaseConfig : {
   //   apiKey: "AIzaSyCS42LNdtLkC3whUk1CcDIp07XDH7xYTMo",
   //   authDomain: "tp-clinica-online---labiv.firebaseapp.com",

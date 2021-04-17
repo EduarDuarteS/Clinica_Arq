@@ -8,7 +8,8 @@ export const environment = {
   firebaseConfig : {
     apiKey: "AIzaSyC7yuT4KV2CrQGibay5uoRfhRUYPixLoMs",
     authDomain: "clinica-abc.firebaseapp.com",
-    databaseURL: "https://clinica-abc.firebaseio.com",
+    // databaseURL: "https://clinica-abc.firebaseio.com",
+    databaseURL: "https://clinica-abc-default-rtdb.firebaseio.com/",
     projectId: "clinica-abc",
     storageBucket: "clinica-abc.appspot.com",
     messagingSenderId: "285271616103",

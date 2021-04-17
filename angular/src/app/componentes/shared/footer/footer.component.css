@@ -1,0 +1,46 @@
+.example-icon {
+    padding: 0 14px;
+  }
+
+  .small-text{
+    display: flex;
+    flex-flow: column nowrap;
+    font-size: x-small;
+  }
+
+  .medium-text{
+    font-size: small;
+  }
+
+  .large-text{
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+  }
+
+  .toolbar{
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    /* background-color: #babaeb; */
+    background-color: transparent;
+    transition: 1s;
+    opacity: 0;
+    height: 50px;
+    width: 100%; 
+  }
+
+
+.toolbar:hover{
+    transition: 1s;
+    background-color: #babaeb;
+    opacity: 0.8;
+}
+
+
+
+  .example-spacer {
+   width: 2px;
+  }

@@ -1,0 +1,88 @@
+<div class="page">
+    <h1>
+        <p class="titulos">Menú de usuario</p>
+    </h1>
+    <div *ngIf='usuario'>
+        <mat-grid-list cols="6" rowHeight="90px">
+            <mat-grid-tile [colspan]=4 [rowspan]=4 class="detalle mat-elevation-z4">
+                <mat-grid-tile-header>Datos personales</mat-grid-tile-header>
+
+                <div *ngIf='paciente'>
+                    <app-detalle-paciente *ngIf='paciente' class="detalle" [imgPerfil]='imgPerfil'
+                        [paciente]='paciente'></app-detalle-paciente>
+                </div>
+                <div *ngIf='medico'>
+                    <app-detalle-medico class="detalle" [imgPerfil]='imgPerfil' [medico]='medico'></app-detalle-medico>
+                </div>
+                <div *ngIf='administrador'>
+                    <app-detalle-administrador class="detalle" [imgPerfil]='imgPerfil' [administrador]="administrador">
+                    </app-detalle-administrador>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="tabla " *ngIf='paciente || medico' [colspan]=2 [rowspan]=4>
+                <mat-grid-tile-header>
+                    Turnos
+                </mat-grid-tile-header>
+                <app-listado-turnos class="tabla" [turnos]='turnos' [pages]=4 (seleccionar)='seleccionarTurno($event)'>
+                </app-listado-turnos>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf='administrador' [colspan]=2 [rowspan]=4 class="table">
+                <!-- Listado de medicos -->
+                <div *ngIf="mostrarMedicos">
+                    <mat-grid-tile-header *ngIf="mostrarMedicos">Listado de medicos</mat-grid-tile-header>
+                    <app-listado-medicos class="tabla"></app-listado-medicos>
+                </div>
+                <!-- Listado de paciente -->
+                <div *ngIf="mostrarPacientes">
+                    <mat-grid-tile-header *ngIf="mostrarPacientes">Listado de pacientes</mat-grid-tile-header>
+                    <app-listado-pacientes class="tabla" [pages]=4></app-listado-pacientes>
+                </div>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+        <mat-toolbar class="toolbar-text">
+            <span class="parrafo" [matBadge]="turnosAceptados.length" matBadgeOverlap="false">Turnos aceptados</span>
+            <span class="parrafo" [matBadge]="turnosFinalizados.length" matBadgeOverlap="false">Turnos
+                finalizados</span>
+            <span class="parrafo" [matBadge]="turnosCancelados.length" matBadgeOverlap="false">Turnos cancelados</span>
+        </mat-toolbar>
+        <mat-toolbar class="detalle mat-elevation-z4">
+            <div class="botones" *ngIf='administrador'>
+                <!-- <button appElevation *ngIf="medicoAutorizar"  mat-raised-button color="primary" (click)="autorizar()">Autorizar</button> -->
+                <button appElevation mat-raised-button [defaultElevation]="0" [routerLink]="'/alta-admin'"
+                    color="accent">Cargar Admin</button>
+                <button appElevation mat-raised-button [defaultElevation]="0" (click)="listarMedicos()"
+                    color="default">Ver Medicos</button>
+                <button appElevation mat-raised-button [defaultElevation]="0" (click)="listarPacientes()"
+                    color="default">Ver Pacientes</button>
+            </div>
+            <div class="botones" *ngIf="turno">
+                <button appElevation mat-raised-button *ngIf="paciente && turno.estado == 'Atendido'"
+                    [defaultElevation]="0" color='primary' (click)="realizarEncuesta()">Realizar encuesta</button>
+                <button appElevation mat-raised-button *ngIf="medico && turno.estado == 'Atendido'" color='primary'
+                    (click)="editarHistoria()">Guardar historia</button>
+                <button appElevation mat-raised-button class="default" (click)="modificarTurno()">Detalles
+                    turno</button>
+            </div>
+            <div class="botones">
+                <button appElevation mat-raised-button [defaultElevation]="0" class="default"
+                    (click)="modificar()">Modificar datos</button>
+                <!-- <button appElevation mat-raised-button *ngIf="paciente || medico" [defaultElevation]="0" class="default"
+                    (click)="cargarTurno()">
+                    Cargar Turno
+                </button> -->
+                <button appElevation mat-raised-button [defaultElevation]="0" (click)="verInformes()"
+                    color="primary">Informes</button>
+                <button appElevation mat-raised-button [defaultElevation]="0" class="warning" (click)="borrar()">Baja de
+                    usuario</button>
+            </div>
+
+        </mat-toolbar>
+    </div>
+    <div *ngIf='!usuario'>
+        <p class="parrafo">Usted no ha iniciado sesión</p>
+    </div>
+</div>

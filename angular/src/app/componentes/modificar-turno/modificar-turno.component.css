@@ -1,0 +1,54 @@
+.example-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+
+  mat-chip {
+    max-width: 200px;
+  }
+
+  .mat-input-element::placeholder {
+    color: black;
+    
+    /* add placeholder css here */
+  }
+
+  textarea{
+    height: 80px;
+  }
+
+
+
+  .turno-field .mat-input-element {
+    color: black;
+    /* add input text color here */
+  }
+
+
+  .turno-field mat-label {
+    color: black;
+    /* add label text color here */
+  }
+
+
+.dialog{
+  display: flexbox;
+  align-content: center;
+  margin: auto;
+  padding: 0;
+  background-color: rgb(233, 233, 245);
+}

@@ -1,0 +1,25 @@
+<div class="mat-elevation-z8 frame">
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{medico.nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="matricula">
+      <mat-header-cell *matHeaderCellDef> Matricula </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{medico.matricula}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="autorizado">
+      <mat-header-cell *matHeaderCellDef> Autorizado </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{medico.autorizado | booleano}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnasMedicos"></mat-header-row>
+    <mat-row (click)="seleccionar(row)" class="example-element-row"
+      *matRowDef="let row; columns: columnasMedicos;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="100" [pageSize]='4' showFirstLastButtons>
+  </mat-paginator>
+</div>

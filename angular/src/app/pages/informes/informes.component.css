@@ -1,0 +1,14 @@
+.frame-row{
+  display: flex;
+  flex-flow: row wrap; 
+  justify-content: center; 
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+}
+
+.example-stretched-tabs {
+  max-width: 800px;
+}

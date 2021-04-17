@@ -1,0 +1,90 @@
+<h2><p class="page">Ingrese sus datos</p></h2>
+<hr>
+
+<mat-vertical-stepper #stepper >
+  <mat-step [stepControl]="datosPaciente">
+    <form [formGroup]="datosPaciente">
+      <ng-template matStepLabel>Datos personales</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="nombre" matInput placeholder="Ingrese su nombre y apellido" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input formControlName="dni" matInput type="number" placeholder="Ingrese su número de DNI"  required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Direccion</mat-label>
+        <input formControlName="direccion" matInput placeholder="Ingrese su dirección completa" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input formControlName="telefono" matInput type="tel" placeholder="Ingrese su número de contacto" required>
+      </mat-form-field>
+      <br>
+      
+        <mat-label>Imagen</mat-label>
+        <hr>
+        <div class="panel">
+          <input formControlName="imagen"  class="botonFile" id="imagenUno" type="file" placeholder="Seleccione su imagen" (change)="onFileSelected($event)">        
+          <img *ngIf='imgUrl1' class="thumbnail" [src]="imgUrl1 | sanitizador : 'url'" alt="foto-de-perfil">
+          <!-- <button mat-raised-button color="primary" (click)='upLoad()'>Subir imagen</button> -->
+        </div>
+        
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="datosPaciente">
+    <form [formGroup]="datosPaciente">
+      <ng-template matStepLabel>Datos de afiliado</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Obra Social o Prepaga</mat-label>
+        <!-- <input [(ngModel)]='paciente.obraSocial' matInput placeholder="Ingrese su obra social o prepaga" required> -->
+        <mat-select formControlName="obraSocial">
+          <mat-option *ngFor="let cobertura of obrasSociales" [value]="cobertura" 
+              placeholder="Ingrese su obra social o prepaga" required>
+            {{cobertura}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Número de afiliado</mat-label>
+        <input formControlName="numeroAfiliado" matInput placeholder="Ingrese su numero de afiliado" required>
+      </mat-form-field>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="datosPaciente">
+    <form [formGroup]="datosPaciente">
+      <ng-template matStepLabel>Datos para usuario</ng-template>
+      <p>Estos datos se utilizarán para su inicio se sesión.</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" placeholder="Ingrese su direccion de correo electrónico" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Clave</mat-label>
+        <input formControlName="clave" matInput type="password" placeholder="Ingrese su contraseña" required>
+      </mat-form-field>
+      <br>
+    
+      <mat-label>Avatar</mat-label>
+        <hr>
+        <div class="panel">
+          <input formControlName="avatar" class="botonFile" id="imagenDos" type="file" placeholder="Seleccione su imagen" (change)="onFileSelected($event)">        
+          <img *ngIf='imgUrl2' class="thumbnail" [src]="imgUrl2 | sanitizador : 'url'" alt="foto-de-perfil">
+          <!-- <button mat-raised-button color="primary" (click)='upLoad()'>Vista previa</button> -->
+        </div>
+
+
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Finalizar</ng-template>
+    <h4><p>Si está seguro de que sus datos sean correctos presione confirmar</p></h4>
+    <div>
+      <button mat-raised-button color="primary" (click)="alta()">Confirmar</button>
+      <button mat-raised-button (click)="stepper.reset()">Limpiar todo</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

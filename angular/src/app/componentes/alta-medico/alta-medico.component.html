@@ -1,0 +1,114 @@
+<h2><p class="page">Ingrese sus datos</p></h2>
+<hr>
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="datosMedico">
+    <form [formGroup]="datosMedico">
+      <ng-template matStepLabel>Datos personales</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="nombre" matInput type="text" placeholder="Ingrese su nombre y apellido" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input formControlName="dni" matInput type="number" placeholder="Ingrese su número de DNI"  required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Direccion</mat-label>
+        <input formControlName="direccion" matInput  placeholder="Ingrese su dirección completa" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input formControlName="telefono" matInput type="tel" placeholder="Ingrese su número de contacto" required>
+      </mat-form-field>
+      <br>
+      
+      <mat-label>Imagen</mat-label>
+      <hr>
+      <div class="panel">
+        <input formControlName="imagen"  class="botonFile" id="imagenUno" type="file" placeholder="Seleccione su imagen" (change)="onFileSelected($event)">        
+        <img *ngIf='imgUrl1' class="thumbnail" [src]="imgUrl1 | sanitizador : 'url'" alt="foto-de-perfil">
+        <!-- <button mat-raised-button color="primary" (click)='upLoad()'>Subir imagen</button> -->
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="datosMedico">
+    <form [formGroup]="datosMedico">
+      <ng-template matStepLabel>Datos laborales</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Especialidad</mat-label>
+        <mat-select formControlName="especialidad" multiple required>
+          <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">{{especialidad}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nueva especialidad</mat-label>
+        <input formControlName="nuevaEspecialidad" matInput placeholder="Otorrinolaringología">
+      </mat-form-field>
+      <button mat-mini-fab color="primary" aria-label="Agregar especialidad" (click)="agregarEspecialidad()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Número de matricula</mat-label>
+        <input formControlName="matricula" matInput placeholder="Ingrese su numero de matrícula" required>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Dias de atención</mat-label>
+        <mat-select formControlName="diasAtencion" multiple required>
+          <mat-option *ngFor="let dia of dias" [value]="dia">{{dia | diaAtencion}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Horarios de atención</mat-label>
+        <mat-select formControlName="horasAtencion" multiple required>
+          <mat-option *ngFor="let hora of horarios" [value]="hora">{{hora}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- Select -->
+    
+      <!-- <mat-label>Especialidades</mat-label>
+      <mat-divider></mat-divider>
+      <mat-selection-list formControlName="especialidad" appearance="fill" role="listbox">
+        <mat-list-option *ngFor="let especialidad of especialidades" [value]='especialidad' role="option">
+          {{especialidad}}
+        </mat-list-option>
+      </mat-selection-list>      -->
+
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="datosMedico">
+    <form [formGroup]="datosMedico">
+      <ng-template matStepLabel>Datos para usuario</ng-template>
+      <p>Estos datos se utilizarán para su inicio se sesión.</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" placeholder="Ingrese su direccion de correo electrónico" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Clave</mat-label>
+        <input formControlName="clave" matInput type="password" placeholder="Ingrese su contraseña" required>
+      </mat-form-field>
+      <br>
+      <mat-label>Avatar</mat-label>
+        <hr>
+        <div class="panel">
+          <input formControlName="avatar" class="botonFile" id="imagenDos" type="file" placeholder="Seleccione su imagen" (change)="onFileSelected($event)">        
+          <img *ngIf='imgUrl2' class="thumbnail" [src]="imgUrl2 | sanitizador : 'url'" alt="foto-de-perfil">
+          <!-- <button mat-raised-button color="primary" (click)='upLoad()'>Vista previa</button> -->
+        </div>
+
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Finalizar</ng-template>
+    <h4><p>Si está seguro de que sus datos sean correctos presione confirmar</p></h4>
+    <div>
+      <button mat-raised-button (click)="alta()" color="primary" >Confirmar</button>
+      <button mat-raised-button (click)="stepper.reset()">Limpiar todo</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

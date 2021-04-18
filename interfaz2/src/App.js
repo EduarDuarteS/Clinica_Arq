@@ -21,7 +21,9 @@ function App() {
       cedula: formInfo.cedula,
     });
     setLoading(false);
-    alert(`Paciente dado de alta con el numero ${response.data.exitId}`);
+    alert(
+      `Paciente dado de alta con el id de confirmacion ${response.data.exitId}`
+    );
   };
 
   const renderButton = () => {

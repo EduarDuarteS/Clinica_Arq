@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(cors());
 
 let open = true;
 
@@ -107,6 +109,6 @@ app.post("/salida", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("app is listening on port 3000!");
+app.listen(3002, () => {
+  console.log("app is listening on port 3002!");
 });

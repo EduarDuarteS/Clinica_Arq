@@ -17,33 +17,39 @@ function App() {
 
   const send = async () => {
     setLoading(true);
-    const response = await axios.post("http://localhost:3002/salida", {
-      cedula: formInfo.cedula,
-    });
-    setLoading(false);
-    alert(
-      `Paciente dado de alta con el id de confirmacion ${response.data.exitId}`
-    );
+    try{
+      const response = await axios.post("http://localhost:3002/salida", {
+        cedula: formInfo.cedula,
+      });
+      setLoading(false);
+      alert(
+        `Paciente dado de alta con el id de confirmacion ${response.data.exitId}`
+      );
+
+    }catch(err){
+      setLoading(false)
+      alert('no se pudo invocar el RPA, porfavor intentelo de nuevo')
+    }
   };
 
   const renderButton = () => {
     if (loading) {
       return (
         <Button variant="primary" disabled>
-          <Spinner
-            as="span"
-            animation="grow"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-          Cargando...
+        <Spinner
+        as="span"
+        animation="grow"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+        />
+        Cargando...
         </Button>
       );
     } else {
       return (
         <Button variant="primary" type="submit" onClick={send}>
-          Enviar
+        Enviar
         </Button>
       );
     }
@@ -51,18 +57,18 @@ function App() {
 
   return (
     <Container className="App">
-      <h2>Dar de alta paciente</h2>
-      <Form>
-        <Form.Group>
-          <Form.Label htmlFor="cedula">Cedula Paciente</Form.Label>
-          <Form.Control
-            id="cedula"
-            placeholder="Cedula"
-            onChange={handleChange}
-          />
-        </Form.Group>
-      </Form>
-      {renderButton()}
+    <h2>Dar de alta paciente</h2>
+    <Form>
+    <Form.Group>
+    <Form.Label htmlFor="cedula">Cedula Paciente</Form.Label>
+    <Form.Control
+    id="cedula"
+    placeholder="Cedula"
+    onChange={handleChange}
+    />
+    </Form.Group>
+    </Form>
+    {renderButton()}
     </Container>
   );
 }

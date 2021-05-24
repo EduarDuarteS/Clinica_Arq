@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=myrootpass
+      - MYSQL_DATABASE=consolidacion
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+
+  consolidacion:
+    build: .
+    ports:
+      - 8080:8080
+    env_file: .env
+    depends_on: 
+      - db

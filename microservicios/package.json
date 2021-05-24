@@ -1,0 +1,24 @@
+{
+  "name": "consolidacion",
+  "version": "1.0.0",
+  "description": "Microservicio que consolida las cuentas, las envia al blockchain y las devuelve por graphql",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jhonatan Guzman",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.24.1",
+    "apollo-server-express": "^2.24.1",
+    "aws-sdk": "^2.912.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.5",
+    "mysql2": "^2.2.5",
+    "node-schedule": "^2.0.0",
+    "sequelize": "^6.6.2"
+  }
+}

@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'cronologiaHistoriaClinica
+
+  Sample SAM Template for cronologiaHistoriaClinica
+
+  '
+Resources:
+  CrononogiaTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: ID
+        Type: String
+  CronologiaQueue:
+    Type: AWS::SQS::Queue
+  PutFuntcion:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: PutFuntcion
+      Handler: putFunction/main.go
+      Runtime: go1.x
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: CrononogiaTable
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue:
+              Fn::GetAtt:
+              - CronologiaQueue
+              - Arn
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ApiFunction
+      Handler: apiHistoriaClinica
+      Runtime: go1.x
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: CrononogiaTable
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /api-historia-clinica/{proxy+}
+            Method: any
+Globals:
+  Function:
+    Timeout: 5
+  Api:
+    Cors:
+      AllowMethods: '''*'''
+      AllowHeaders: '''*'''
+      AllowOrigin: '''*'''

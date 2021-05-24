@@ -1,0 +1,29 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+#
+
+type Incidencia {
+  id: ID!
+  tipo: String!
+  fecha: String!
+  nombre: String!
+  descripcion: String!
+}
+
+type Paciente {
+  cedula: String!
+  nombre: String!
+  fechaCumpleanos: String!
+}
+
+type Cronologia {
+  id: ID!
+  paciente: Paciente!
+  incidencias: [Incidencia!]
+}
+
+type Query {
+  historiaClinicaPaciente(cedula: String!): Cronologia!
+}
+

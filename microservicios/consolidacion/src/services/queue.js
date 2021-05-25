@@ -1,4 +1,5 @@
-const Cuenta = require('../models/cuenta')
+const Cuenta = require("../models/cuenta")
+const sqs = require("../settings/sqs")
 
 let saveToDb = async (bodyCuenta) => {
 
@@ -31,6 +32,8 @@ let getMessageFromQueue = async () => {
             let body = JSON.parse(data.Messages[0].Body)
             
             //TODO: save body to db and send to blockchain
+
+            await saveToDb(body);
             
             //Delete message
             let deleteParams = {

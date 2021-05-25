@@ -7,6 +7,8 @@ const port = 8080
 const sequelize = require("./settings/sequelize")
 const Cuenta = require("./models/cuenta")
 
+require('dotenv').config()
+
 const cors = require('cors')
 
 app.use(cors())
@@ -72,7 +74,7 @@ const resolvers = {
 const server = new ApolloServer({ typeDefs, resolvers })
 
 schedule.scheduleJob('*/5 * * * * *', function() {
-    //console.log("Looking for messages")
+    getMessageFromQueue()
 })
 
 saveToDb(cuentas[0])

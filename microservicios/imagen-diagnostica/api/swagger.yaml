@@ -1,0 +1,66 @@
+---
+swagger: "2.0"
+info:
+  description: "API interno de historia clinica"
+  version: "1.0.0"
+  title: "API Historia clinica"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "clinicaABC.swagger.io"
+basePath: "/v1"
+tags:
+- name: "Historia Clinica"
+  description: "Integracion historia clinica"
+schemes:
+- "https"
+- "http"
+paths:
+  /historia-clinica/{cedula}/imagen-diagnostica:
+    post:
+      tags:
+      - "Historia Clinica"
+      summary: "agregar un procedimiento a un paciente"
+      description: ""
+      operationId: "addProcedimientoHistoriaClinica"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "procedimiento que desea agregarle al paciente"
+        required: true
+        schema:
+          $ref: "#/definitions/Procedimiento"
+      - name: "cedula"
+        in: "path"
+        description: "cedula del paciente al cual se le va a agregar el procedimiento"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "procedimiento invalido"
+      x-swagger-router-controller: "HistoriaClinica"
+definitions:
+  Procedimiento:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nombre:
+        type: "string"
+      valor:
+        type: "integer"
+      resultado:
+        type: "string"
+      fecha:
+        type: "string"
+    example:
+      fecha: "fecha"
+      resultado: "resultado"
+      valor: 6
+      id: 0
+      nombre: "nombre"
